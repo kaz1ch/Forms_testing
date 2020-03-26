@@ -116,8 +116,9 @@
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ExitMenuItem.Text = "Выход";
+            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem);
             // 
             // HelpItem
             // 

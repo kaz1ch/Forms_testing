@@ -17,44 +17,9 @@ namespace Forms_testing
             InitializeComponent();
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void ExitMenuItem_OnClick(object sender, EventArgs e)
         {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void StudentNameEdit_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void StudentLastNameEdit_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
+            Close();
         }
     }
 }
