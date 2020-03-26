@@ -53,7 +53,35 @@ namespace Forms_testing
 
             StudentsList.Items.Clear();
             foreach (var student in _Students)
-                StudentsList.Items.Add(student.LastName + " " + student.Name + " " + student.Patronymic)
+                StudentsList.Items.Add(student.LastName + " " + student.Name + " " + student.Patronymic);
+        }
+
+        private void StudentList_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var students_list_box = (ListBox) sender;
+
+            var selected_index = students_list_box.SelectedIndex;
+            if (selected_index < 0) return;
+
+            var student = _Students[selected_index];
+
+            StudentLastNameEdit.Text = student.LastName;
+            StudentNameEdit.Text = student.Name;
+            StudentPatronymicEdit.Text = student.Patronymic;
+
+        }
+
+        private void SaveStudentChanges_Click(object sender, EventArgs e)
+        {
+            var selected_index = StudentsList.SelectedIndex;
+
+            var student = _Students[selected_index];
+
+            student.LastName = StudentLastNameEdit.Text;
+            student.Name = StudentNameEdit.Text;
+            student.Patronymic = StudentPatronymicEdit.Text;
+
+            StudentsList.Items[selected_index] = student.LastName + " " + student.Name;
         }
     }
 }

@@ -49,7 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.StudentBirthdayEit = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.StuentPatronimicEdit = new System.Windows.Forms.TextBox();
+            this.StudentPatronymicEdit = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.StudentNameEdit = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -102,23 +102,23 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(175, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
             // 
             // OpenDataGroupsMenuItem
             // 
             this.OpenDataGroupsMenuItem.Name = "OpenDataGroupsMenuItem";
-            this.OpenDataGroupsMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.OpenDataGroupsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.OpenDataGroupsMenuItem.Text = "Файл БД групп";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(118, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ExitMenuItem.Text = "Выход";
             this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_OnClick);
             // 
@@ -145,6 +145,7 @@
             this.StudentsList.Name = "StudentsList";
             this.StudentsList.Size = new System.Drawing.Size(222, 173);
             this.StudentsList.TabIndex = 1;
+            this.StudentsList.SelectedIndexChanged += new System.EventHandler(this.StudentList_OnSelectedIndexChanged);
             // 
             // AddNewStudentButton
             // 
@@ -178,7 +179,7 @@
             this.StudentInfoPanel.Controls.Add(this.label5);
             this.StudentInfoPanel.Controls.Add(this.StudentBirthdayEit);
             this.StudentInfoPanel.Controls.Add(this.label4);
-            this.StudentInfoPanel.Controls.Add(this.StuentPatronimicEdit);
+            this.StudentInfoPanel.Controls.Add(this.StudentPatronymicEdit);
             this.StudentInfoPanel.Controls.Add(this.label3);
             this.StudentInfoPanel.Controls.Add(this.StudentNameEdit);
             this.StudentInfoPanel.Controls.Add(this.label2);
@@ -200,6 +201,7 @@
             this.SaveStudentChanges.TabIndex = 12;
             this.SaveStudentChanges.Text = "Сохранить изменения";
             this.SaveStudentChanges.UseVisualStyleBackColor = true;
+            this.SaveStudentChanges.Click += new System.EventHandler(this.SaveStudentChanges_Click);
             // 
             // StudentGroupEdit
             // 
@@ -255,14 +257,14 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Дата рождения:";
             // 
-            // StuentPatronimicEdit
+            // StudentPatronymicEdit
             // 
-            this.StuentPatronimicEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.StudentPatronymicEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.StuentPatronimicEdit.Location = new System.Drawing.Point(69, 69);
-            this.StuentPatronimicEdit.Name = "StuentPatronimicEdit";
-            this.StuentPatronimicEdit.Size = new System.Drawing.Size(177, 20);
-            this.StuentPatronimicEdit.TabIndex = 5;
+            this.StudentPatronymicEdit.Location = new System.Drawing.Point(69, 69);
+            this.StudentPatronymicEdit.Name = "StudentPatronymicEdit";
+            this.StudentPatronymicEdit.Size = new System.Drawing.Size(177, 20);
+            this.StudentPatronymicEdit.TabIndex = 5;
             // 
             // label3
             // 
@@ -359,7 +361,7 @@
         private System.Windows.Forms.GroupBox StudentInfoPanel;
         private System.Windows.Forms.DateTimePicker StudentBirthdayEit;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox StuentPatronimicEdit;
+        private System.Windows.Forms.TextBox StudentPatronymicEdit;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox StudentNameEdit;
         private System.Windows.Forms.Label label2;
