@@ -55,6 +55,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.StudentLastNameEdit = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.StudentsDBOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.MainMenu.SuspendLayout();
             this.StudentInfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentRatingEit)).BeginInit();
@@ -88,14 +89,15 @@
             this.toolStripMenuItem2,
             this.OpenDataGroupsMenuItem});
             this.OpenMenuItem.Name = "OpenMenuItem";
-            this.OpenMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.OpenMenuItem.Size = new System.Drawing.Size(180, 22);
             this.OpenMenuItem.Text = "Открыть";
             // 
             // OpenDataStudentsMenuItem
             // 
             this.OpenDataStudentsMenuItem.Name = "OpenDataStudentsMenuItem";
-            this.OpenDataStudentsMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.OpenDataStudentsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.OpenDataStudentsMenuItem.Text = "Файл БД студентов";
+            this.OpenDataStudentsMenuItem.Click += new System.EventHandler(this.OpenStudentsDBMenuItem_OnClick);
             // 
             // toolStripMenuItem2
             // 
@@ -116,9 +118,9 @@
             // ExitMenuItem
             // 
             this.ExitMenuItem.Name = "ExitMenuItem";
-            this.ExitMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitMenuItem.Size = new System.Drawing.Size(121, 22);
             this.ExitMenuItem.Text = "Выход";
-            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem);
+            this.ExitMenuItem.Click += new System.EventHandler(this.ExitMenuItem_OnClick);
             // 
             // HelpItem
             // 
@@ -225,7 +227,6 @@
             this.label6.Size = new System.Drawing.Size(45, 13);
             this.label6.TabIndex = 9;
             this.label6.Text = "Группа:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -235,7 +236,6 @@
             this.label5.Size = new System.Drawing.Size(51, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "Рейтинг:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // StudentBirthdayEit
             // 
@@ -245,7 +245,6 @@
             this.StudentBirthdayEit.Name = "StudentBirthdayEit";
             this.StudentBirthdayEit.Size = new System.Drawing.Size(144, 20);
             this.StudentBirthdayEit.TabIndex = 7;
-            this.StudentBirthdayEit.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label4
             // 
@@ -255,7 +254,6 @@
             this.label4.Size = new System.Drawing.Size(89, 13);
             this.label4.TabIndex = 6;
             this.label4.Text = "Дата рождения:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // StuentPatronimicEdit
             // 
@@ -274,7 +272,6 @@
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Отчество:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // StudentNameEdit
             // 
@@ -284,7 +281,6 @@
             this.StudentNameEdit.Name = "StudentNameEdit";
             this.StudentNameEdit.Size = new System.Drawing.Size(177, 20);
             this.StudentNameEdit.TabIndex = 3;
-            this.StudentNameEdit.TextChanged += new System.EventHandler(this.StudentNameEdit_TextChanged);
             // 
             // label2
             // 
@@ -294,7 +290,6 @@
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Имя:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // StudentLastNameEdit
             // 
@@ -304,7 +299,6 @@
             this.StudentLastNameEdit.Name = "StudentLastNameEdit";
             this.StudentLastNameEdit.Size = new System.Drawing.Size(177, 20);
             this.StudentLastNameEdit.TabIndex = 1;
-            this.StudentLastNameEdit.TextChanged += new System.EventHandler(this.StudentLastNameEdit_TextChanged);
             // 
             // label1
             // 
@@ -314,6 +308,14 @@
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Фамилия:";
+            // 
+            // StudentsDBOpenFileDialog
+            // 
+            this.StudentsDBOpenFileDialog.DefaultExt = "csv";
+            this.StudentsDBOpenFileDialog.FileName = "Students.csv";
+            this.StudentsDBOpenFileDialog.Filter = "Файлы csv (*.csv)|*.csv|Все файлы (*.*)|*.*";
+            this.StudentsDBOpenFileDialog.RestoreDirectory = true;
+            this.StudentsDBOpenFileDialog.Title = "Выбор файла базы данных студнетов";
             // 
             // MainForm
             // 
@@ -368,6 +370,7 @@
         private System.Windows.Forms.NumericUpDown StudentRatingEit;
         private System.Windows.Forms.TextBox StudentGroupEdit;
         private System.Windows.Forms.Button SaveStudentChanges;
+        private System.Windows.Forms.OpenFileDialog StudentsDBOpenFileDialog;
     }
 }
 
