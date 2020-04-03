@@ -163,7 +163,7 @@ namespace Forms_testing
                 Title = "Выбор файл БД групп",
                 Filter = "Файлы csv (*.csv)|*.csb|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*",
                 RestoreDirectory = true,
-                InitialDirectory = Environment.CurrentDirectory(),
+                InitialDirectory = Environment.CurrentDirectory,
                 CheckFileExists = true,
                 FileName = "Groups.csv"
             };
@@ -182,7 +182,8 @@ namespace Forms_testing
 
             using (var reader = File.OpenText(data_file_name))
             {
-                
+                _Groups.Clear();
+                _Groups.AddRange(Extensions.ReadGroups(reader));
             }
         }
 
