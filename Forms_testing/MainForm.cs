@@ -16,6 +16,7 @@ namespace Forms_testing
     public partial class MainForm : Form
     {
         private readonly List<Student> _Students = new List<Student>();
+        private readonly List<Group> _Groups = new List<Group>();
 
         public MainForm()
         {
@@ -153,6 +154,41 @@ namespace Forms_testing
                     writer.WriteLine(line);
                 }
             }
+        }
+
+        private void OpenGroupDBMenuItem_OnClick(object sender, EventArgs e)
+        {
+            var open_file_dialog = new OpenFileDialog
+            {
+                Title = "Выбор файл БД групп",
+                Filter = "Файлы csv (*.csv)|*.csb|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*",
+                RestoreDirectory = true,
+                InitialDirectory = Environment.CurrentDirectory(),
+                CheckFileExists = true,
+                FileName = "Groups.csv"
+            };
+
+            var dialog_result = StudentsDBOpenFileDialog.ShowDialog();
+            if (dialog_result != DialogResult.OK) return;
+
+            var data_file_name = StudentsDBOpenFileDialog.FileName;
+
+            if (!File.Exists(data_file_name))
+            {
+                MessageBox.Show("Выбранный файл не существует", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (var reader = File.OpenText(data_file_name))
+            {
+                
+            }
+        }
+
+        private void SaveGroupDBMenuItem_OnClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

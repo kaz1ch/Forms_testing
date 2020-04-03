@@ -35,6 +35,10 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.OpenDataGroupsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveStudentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveGroupsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,10 +60,6 @@
             this.StudentLastNameEdit = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.StudentsDBOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.SaveStudentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveGroupsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.StudentsDBSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.MainMenu.SuspendLayout();
             this.StudentInfoPanel.SuspendLayout();
@@ -102,25 +102,54 @@
             // OpenDataStudentsMenuItem
             // 
             this.OpenDataStudentsMenuItem.Name = "OpenDataStudentsMenuItem";
-            this.OpenDataStudentsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenDataStudentsMenuItem.Size = new System.Drawing.Size(178, 22);
             this.OpenDataStudentsMenuItem.Text = "Файл БД студентов";
             this.OpenDataStudentsMenuItem.Click += new System.EventHandler(this.OpenStudentsDBMenuItem_OnClick);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(175, 6);
             // 
             // OpenDataGroupsMenuItem
             // 
             this.OpenDataGroupsMenuItem.Name = "OpenDataGroupsMenuItem";
-            this.OpenDataGroupsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenDataGroupsMenuItem.Size = new System.Drawing.Size(178, 22);
             this.OpenDataGroupsMenuItem.Text = "Файл БД групп";
+            this.OpenDataGroupsMenuItem.Click += new System.EventHandler(this.OpenGroupDBMenuItem_OnClick);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // SaveMenuItem
+            // 
+            this.SaveMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveStudentsMenuItem,
+            this.SaveGroupsMenuItem});
+            this.SaveMenuItem.Name = "SaveMenuItem";
+            this.SaveMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveMenuItem.Text = "Сохранить";
+            // 
+            // SaveStudentsMenuItem
+            // 
+            this.SaveStudentsMenuItem.Name = "SaveStudentsMenuItem";
+            this.SaveStudentsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveStudentsMenuItem.Text = "Студентов";
+            this.SaveStudentsMenuItem.Click += new System.EventHandler(this.SaveStudentsDBMenuItem_OnClick);
+            // 
+            // SaveGroupsMenuItem
+            // 
+            this.SaveGroupsMenuItem.Name = "SaveGroupsMenuItem";
+            this.SaveGroupsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveGroupsMenuItem.Text = "Группы";
+            this.SaveGroupsMenuItem.Click += new System.EventHandler(this.SaveGroupDBMenuItem_OnClick);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // ExitMenuItem
             // 
@@ -327,33 +356,6 @@
             this.StudentsDBOpenFileDialog.Filter = "Файлы csv (*.csv)|*.csv|Все файлы (*.*)|*.*";
             this.StudentsDBOpenFileDialog.RestoreDirectory = true;
             this.StudentsDBOpenFileDialog.Title = "Выбор файла базы данных студнетов";
-            // 
-            // SaveMenuItem
-            // 
-            this.SaveMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.SaveStudentsMenuItem,
-            this.SaveGroupsMenuItem});
-            this.SaveMenuItem.Name = "SaveMenuItem";
-            this.SaveMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SaveMenuItem.Text = "Сохранить";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
-            // 
-            // SaveStudentsMenuItem
-            // 
-            this.SaveStudentsMenuItem.Name = "SaveStudentsMenuItem";
-            this.SaveStudentsMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SaveStudentsMenuItem.Text = "Студентов";
-            this.SaveStudentsMenuItem.Click += new System.EventHandler(this.SaveStudentsDBMenuItem_OnClick);
-            // 
-            // SaveGroupsMenuItem
-            // 
-            this.SaveGroupsMenuItem.Name = "SaveGroupsMenuItem";
-            this.SaveGroupsMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.SaveGroupsMenuItem.Text = "Группы";
             // 
             // StudentsDBSaveFileDialog
             // 
