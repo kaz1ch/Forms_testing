@@ -235,5 +235,11 @@ namespace Forms_testing
                 }
             }
         }
+
+        private void GroupEditMenuItem_OnClick(object sender, EventArgs e)
+        {
+            var editor = new GroupsManagerWindow(_Groups, _Students);
+            editor.ShowDialog();
+        }
     }
 }

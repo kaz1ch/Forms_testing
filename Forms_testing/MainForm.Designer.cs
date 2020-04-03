@@ -61,6 +61,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.StudentsDBOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.StudentsDBSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.GroupEditMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             this.StudentInfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentRatingEit)).BeginInit();
@@ -70,6 +71,7 @@
             // 
             this.MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuItem,
+            this.GroupEditMenuItem,
             this.HelpItem});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
@@ -169,7 +171,7 @@
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.AboutMenuItem.Size = new System.Drawing.Size(180, 22);
             this.AboutMenuItem.Text = "О программе";
             // 
             // StudentsList
@@ -367,6 +369,13 @@
             this.StudentsDBSaveFileDialog.RestoreDirectory = true;
             this.StudentsDBSaveFileDialog.Title = "Выбор файла для сохранения БД студентов";
             // 
+            // GroupEditMenuItem
+            // 
+            this.GroupEditMenuItem.Name = "GroupEditMenuItem";
+            this.GroupEditMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.GroupEditMenuItem.Text = "Группы";
+            this.GroupEditMenuItem.Click += new System.EventHandler(this.GroupEditMenuItem_OnClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -426,6 +435,7 @@
         private System.Windows.Forms.ToolStripMenuItem SaveGroupsMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
         private System.Windows.Forms.SaveFileDialog StudentsDBSaveFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem GroupEditMenuItem;
     }
 }
 

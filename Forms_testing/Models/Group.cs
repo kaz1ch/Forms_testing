@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forms_testing.Models
 {
-    class Group
+    public class Group
     {
         public int Id { get; set; }
 
