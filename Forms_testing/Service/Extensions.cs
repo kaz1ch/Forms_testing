@@ -39,5 +39,28 @@ namespace Forms_testing.Service
                 yield return student;
             }
         }
+        public static IEnumerable<string> GetStrings(StreamReader reader)
+        {
+            while (!reader.EndOfStream)
+                yield return reader.ReadLine();
+        }
+
+        public static IEnumerable<Group> ReadGroups(StreamReader reader)
+        {
+            const char separator = ';';
+            var groups = GetStrings(reader)
+                .Skip(1)
+                .Where(line => line.Length > 0)
+                .Select(line => line.Split(separator))
+                .Where(components => components.Length >= 4)
+                .Select(components => new Group
+                {
+                    Id = int.Parse(components[0]),
+                    Name = components[1],
+                    Course = int.Parse(components[2]),
+                    Description = components[3]
+                });
+            return groups;
+        }
     }
 }
