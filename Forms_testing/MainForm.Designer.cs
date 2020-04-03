@@ -247,6 +247,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StudentGroupEdit.Location = new System.Drawing.Point(64, 145);
             this.StudentGroupEdit.Name = "StudentGroupEdit";
+            this.StudentGroupEdit.ReadOnly = true;
             this.StudentGroupEdit.Size = new System.Drawing.Size(182, 20);
             this.StudentGroupEdit.TabIndex = 11;
             // 
@@ -254,8 +255,10 @@
             // 
             this.StudentRatingEit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.StudentRatingEit.DecimalPlaces = 2;
             this.StudentRatingEit.Location = new System.Drawing.Point(64, 118);
             this.StudentRatingEit.Name = "StudentRatingEit";
+            this.StudentRatingEit.ReadOnly = true;
             this.StudentRatingEit.Size = new System.Drawing.Size(182, 20);
             this.StudentRatingEit.TabIndex = 10;
             // 
