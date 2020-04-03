@@ -114,5 +114,45 @@ namespace Forms_testing
             StudentsList.Items.RemoveAt(selected_index);
             StudentsList.SelectedIndex = selected_index - 1;
         }
+
+        private void SaveStudentsDBMenuItem_OnClick(object sender, EventArgs e)
+        {
+            StudentsDBSaveFileDialog.InitialDirectory = Environment.CurrentDirectory;
+
+            var dialog_result = StudentsDBSaveFileDialog.ShowDialog();
+            if (dialog_result != DialogResult.OK) return;
+
+            var file_name = StudentsDBSaveFileDialog.FileName;
+
+            if (File.Exists(file_name))
+            {
+                var choice = MessageBox.Show(
+                    "Файл " + file_name + " существует. Хотите его перезаписать?",
+                    "Предупреждение!",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2);
+                if (choice != DialogResult.Yes) return;
+            }
+            using (var writer = File.CreateText(file_name))
+            {
+                writer.WriteLine("Id; LastName; Name; Patronymic; Birthday; Rating; GroupId");
+
+                foreach (var student in _Students)
+                {
+                    var line = string.Join(";",
+                        student.Id,
+                        student.Name,
+                        student.LastName,
+                        student.Patronymic,
+                        student.Birthday.ToString("yyyy-MM-dd"),
+                        student.Rating,
+                        student.GroupId);
+
+
+                    writer.WriteLine(line);
+                }
+            }
+        }
     }
 }
