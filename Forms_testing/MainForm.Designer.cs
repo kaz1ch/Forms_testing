@@ -35,6 +35,10 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.OpenDataGroupsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveStudentsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveGroupsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.ExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +60,8 @@
             this.StudentLastNameEdit = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.StudentsDBOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.StudentsDBSaveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.GroupEditMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainMenu.SuspendLayout();
             this.StudentInfoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StudentRatingEit)).BeginInit();
@@ -65,6 +71,7 @@
             // 
             this.MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileMenuItem,
+            this.GroupEditMenuItem,
             this.HelpItem});
             this.MainMenu.Location = new System.Drawing.Point(0, 0);
             this.MainMenu.Name = "MainMenu";
@@ -77,6 +84,8 @@
             this.FileMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.OpenMenuItem,
             this.toolStripMenuItem1,
+            this.SaveMenuItem,
+            this.toolStripMenuItem3,
             this.ExitMenuItem});
             this.FileMenuItem.Name = "FileMenuItem";
             this.FileMenuItem.Size = new System.Drawing.Size(48, 20);
@@ -95,25 +104,54 @@
             // OpenDataStudentsMenuItem
             // 
             this.OpenDataStudentsMenuItem.Name = "OpenDataStudentsMenuItem";
-            this.OpenDataStudentsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenDataStudentsMenuItem.Size = new System.Drawing.Size(178, 22);
             this.OpenDataStudentsMenuItem.Text = "Файл БД студентов";
             this.OpenDataStudentsMenuItem.Click += new System.EventHandler(this.OpenStudentsDBMenuItem_OnClick);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(175, 6);
             // 
             // OpenDataGroupsMenuItem
             // 
             this.OpenDataGroupsMenuItem.Name = "OpenDataGroupsMenuItem";
-            this.OpenDataGroupsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.OpenDataGroupsMenuItem.Size = new System.Drawing.Size(178, 22);
             this.OpenDataGroupsMenuItem.Text = "Файл БД групп";
+            this.OpenDataGroupsMenuItem.Click += new System.EventHandler(this.OpenGroupDBMenuItem_OnClick);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // SaveMenuItem
+            // 
+            this.SaveMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.SaveStudentsMenuItem,
+            this.SaveGroupsMenuItem});
+            this.SaveMenuItem.Name = "SaveMenuItem";
+            this.SaveMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveMenuItem.Text = "Сохранить";
+            // 
+            // SaveStudentsMenuItem
+            // 
+            this.SaveStudentsMenuItem.Name = "SaveStudentsMenuItem";
+            this.SaveStudentsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveStudentsMenuItem.Text = "Студентов";
+            this.SaveStudentsMenuItem.Click += new System.EventHandler(this.SaveStudentsDBMenuItem_OnClick);
+            // 
+            // SaveGroupsMenuItem
+            // 
+            this.SaveGroupsMenuItem.Name = "SaveGroupsMenuItem";
+            this.SaveGroupsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.SaveGroupsMenuItem.Text = "Группы";
+            this.SaveGroupsMenuItem.Click += new System.EventHandler(this.SaveGroupDBMenuItem_OnClick);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // ExitMenuItem
             // 
@@ -133,7 +171,7 @@
             // AboutMenuItem
             // 
             this.AboutMenuItem.Name = "AboutMenuItem";
-            this.AboutMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.AboutMenuItem.Size = new System.Drawing.Size(180, 22);
             this.AboutMenuItem.Text = "О программе";
             // 
             // StudentsList
@@ -211,6 +249,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.StudentGroupEdit.Location = new System.Drawing.Point(64, 145);
             this.StudentGroupEdit.Name = "StudentGroupEdit";
+            this.StudentGroupEdit.ReadOnly = true;
             this.StudentGroupEdit.Size = new System.Drawing.Size(182, 20);
             this.StudentGroupEdit.TabIndex = 11;
             // 
@@ -218,8 +257,10 @@
             // 
             this.StudentRatingEit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.StudentRatingEit.DecimalPlaces = 2;
             this.StudentRatingEit.Location = new System.Drawing.Point(64, 118);
             this.StudentRatingEit.Name = "StudentRatingEit";
+            this.StudentRatingEit.ReadOnly = true;
             this.StudentRatingEit.Size = new System.Drawing.Size(182, 20);
             this.StudentRatingEit.TabIndex = 10;
             // 
@@ -321,6 +362,20 @@
             this.StudentsDBOpenFileDialog.RestoreDirectory = true;
             this.StudentsDBOpenFileDialog.Title = "Выбор файла базы данных студнетов";
             // 
+            // StudentsDBSaveFileDialog
+            // 
+            this.StudentsDBSaveFileDialog.FileName = "Students.csv";
+            this.StudentsDBSaveFileDialog.Filter = "Файлы csv (*.csv)|*.csv|Все файлы (*.*)|*.*";
+            this.StudentsDBSaveFileDialog.RestoreDirectory = true;
+            this.StudentsDBSaveFileDialog.Title = "Выбор файла для сохранения БД студентов";
+            // 
+            // GroupEditMenuItem
+            // 
+            this.GroupEditMenuItem.Name = "GroupEditMenuItem";
+            this.GroupEditMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.GroupEditMenuItem.Text = "Группы";
+            this.GroupEditMenuItem.Click += new System.EventHandler(this.GroupEditMenuItem_OnClick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,6 +430,12 @@
         private System.Windows.Forms.TextBox StudentGroupEdit;
         private System.Windows.Forms.Button SaveStudentChanges;
         private System.Windows.Forms.OpenFileDialog StudentsDBOpenFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveStudentsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveGroupsMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.SaveFileDialog StudentsDBSaveFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem GroupEditMenuItem;
     }
 }
 

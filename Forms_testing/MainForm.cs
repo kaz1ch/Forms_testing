@@ -16,6 +16,7 @@ namespace Forms_testing
     public partial class MainForm : Form
     {
         private readonly List<Student> _Students = new List<Student>();
+        private readonly List<Group> _Groups = new List<Group>();
 
         public MainForm()
         {
@@ -69,6 +70,11 @@ namespace Forms_testing
             StudentNameEdit.Text = student.Name;
             StudentPatronymicEdit.Text = student.Patronymic;
 
+            StudentRatingEit.Value = (decimal)student.Rating;
+
+            var group = _Groups.FirstOrDefault(g => g.Id == student.GroupId);
+            if (group != null)
+                StudentGroupEdit.Text = group.Name;
         }
 
         private void SaveStudentChanges_Click(object sender, EventArgs e)
@@ -80,6 +86,7 @@ namespace Forms_testing
             student.LastName = StudentLastNameEdit.Text;
             student.Name = StudentNameEdit.Text;
             student.Patronymic = StudentPatronymicEdit.Text;
+            student.Rating = (double)StudentRatingEit.Value;
 
             StudentsList.Items[selected_index] = student.LastName + " " + student.Name;
         }
@@ -113,6 +120,126 @@ namespace Forms_testing
             _Students.RemoveAt(selected_index);
             StudentsList.Items.RemoveAt(selected_index);
             StudentsList.SelectedIndex = selected_index - 1;
+        }
+
+        private void SaveStudentsDBMenuItem_OnClick(object sender, EventArgs e)
+        {
+            StudentsDBSaveFileDialog.InitialDirectory = Environment.CurrentDirectory;
+
+            var dialog_result = StudentsDBSaveFileDialog.ShowDialog();
+            if (dialog_result != DialogResult.OK) return;
+
+            var file_name = StudentsDBSaveFileDialog.FileName;
+
+            if (File.Exists(file_name))
+            {
+                var choice = MessageBox.Show(
+                    "Файл " + file_name + " существует. Хотите его перезаписать?",
+                    "Предупреждение!",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2);
+                if (choice != DialogResult.Yes) return;
+            }
+
+            using (var writer = File.CreateText(file_name))
+            {
+                writer.WriteLine("Id; LastName; Name; Patronymic; Birthday; Rating; GroupId");
+
+                foreach (var student in _Students)
+                {
+                    var line = string.Join(";",
+                        student.Id,
+                        student.Name,
+                        student.LastName,
+                        student.Patronymic,
+                        student.Birthday.ToString("yyyy-MM-dd"),
+                        student.Rating,
+                        student.GroupId);
+
+
+                    writer.WriteLine(line);
+                }
+            }
+        }
+
+        private void OpenGroupDBMenuItem_OnClick(object sender, EventArgs e)
+        {
+            var open_file_dialog = new OpenFileDialog
+            {
+                Title = "Выбор файл БД групп",
+                Filter = "Файлы csv (*.csv)|*.csb|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*",
+                RestoreDirectory = true,
+                InitialDirectory = Environment.CurrentDirectory,
+                CheckFileExists = true,
+                FileName = "Groups.csv"
+            };
+
+            var dialog_result = StudentsDBOpenFileDialog.ShowDialog();
+            if (dialog_result != DialogResult.OK) return;
+
+            var data_file_name = StudentsDBOpenFileDialog.FileName;
+
+            if (!File.Exists(data_file_name))
+            {
+                MessageBox.Show("Выбранный файл не существует", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (var reader = File.OpenText(data_file_name))
+            {
+                _Groups.Clear();
+                _Groups.AddRange(Extensions.ReadGroups(reader));
+            }
+        }
+
+        private void SaveGroupDBMenuItem_OnClick(object sender, EventArgs e)
+        {
+            var save_file_dialog = new SaveFileDialog
+            {
+                Title = "Выбор файл БД групп для сохрпнения информации",
+                Filter = "Файлы csv (*.csv)|*.csb|Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*",
+                RestoreDirectory = true,
+                InitialDirectory = Environment.CurrentDirectory,
+                CheckFileExists = true,
+                FileName = "Groups.csv"
+            };
+
+            var dialog_result = save_file_dialog.ShowDialog();
+            if (dialog_result != DialogResult.OK) return;
+
+            var file_name = save_file_dialog.FileName;
+
+            if (File.Exists(file_name))
+            {
+                var choice = MessageBox.Show(
+                    "Файл " + file_name + " существует. Хотите его перезаписать?",
+                    "Предупреждение!",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2);
+                if (choice != DialogResult.Yes) return;
+            }
+
+            using (var writer = File.CreateText(file_name))
+            {
+                writer.WriteLine("GroupId; Name; Course; Description");
+                foreach (var group in _Groups)
+                {
+                    writer.WriteLine(string.Join(";",
+                        group.Id,
+                        group.Name,
+                        group.Course,
+                        group.Description));
+                }
+            }
+        }
+
+        private void GroupEditMenuItem_OnClick(object sender, EventArgs e)
+        {
+            var editor = new GroupsManagerWindow(_Groups, _Students);
+            editor.ShowDialog();
         }
     }
 }
